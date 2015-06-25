@@ -1,0 +1,34 @@
+vlad_bugtracker_dashboard_page:
+    pattern: /
+    defaults: { _controller: VladBugtrackerBundle:Dashboard:index }
+
+
+
+#vlad_bugtracker_login:
+#    pattern: /login
+#    defaults: { _controller: VladBugtrackerBundle:Login:index }
+
+#vlad_bugtracker_login_check:
+#    pattern: /login_check
+#    defaults: { _controller: VladBugtrackerBundle:Login:check }
+
+
+
+
+
+
+#webaccess_bugtracker_ticket_add:
+#    pattern: /{_locale}/ticket_add
+#    defaults: { _controller: WebaccessBugtrackerBundle:Ticket:add, _locale: "%locale%" }
+#
+#webaccess_bugtracker_ticket_edit:
+#    pattern: /{_locale}/ticket_edit/{ticketId}
+#    defaults: { _controller: WebaccessBugtrackerBundle:Ticket:edit, ticketId: ticketId, _locale: "%locale%" }
+#
+#webaccess_bugtracker_ticket_delete:
+#    pattern: /{_locale}/ticket_delete/{ticketId}
+#    defaults: { _controller: WebaccessBugtrackerBundle:Ticket:delete, ticketId: ticketId, _locale: "%locale%" }
+#
+#webaccess_bugtracker_ticket_test_mail:
+#    pattern: /{_locale}/ticket_test_mail
+#    defaults: { _controller: WebaccessBugtrackerBundle:Ticket:testMail, _locale: "%locale%" }

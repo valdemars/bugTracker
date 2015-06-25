@@ -1,0 +1,53 @@
+{% extends "VladBugtrackerBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block description %}{{ parent() }}{% endblock %}
+
+{% block bugtracker_body %}
+
+    {% include 'VladBugtrackerBundle:Partial:menu.html.twig' with {'route' : 'user'} %}
+
+    <div id="dashboard" class="main-wrapper">
+        <div class="header">
+            <div class="title">
+                <h1>{{ 'user.title' | trans }}</h1>
+            </div>
+            <div class="button-add">
+
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <table class="table table-striped table-bordered">
+
+            <thead>
+            <tr>
+                <th>{{ 'user.username' | trans }}</th>
+                <th>{{ 'user.email' | trans }}</th>
+                {#<th>{{ 'user.fullname' | trans }}</th>#}
+                <th>{{ 'general.action' | trans }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+
+
+                    <td class="action" width="4%">
+                        <a class="icon-pencil" href="{{ path('vlad_user_user_edit', {'userId':user.id}) }}" title="{{ 'generic.edit' | trans }}"></a>
+                        <a class="icon-remove" href="{{ path('vlad_user_user_delete', {'userId':user.id}) }}" title="{{ 'generic.delete' | trans }}"></a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

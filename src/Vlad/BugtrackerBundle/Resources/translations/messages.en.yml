@@ -1,0 +1,18 @@
+user:
+    username: Username
+    email: Email
+    fullname: Fullname
+    title: Users
+    password: Password
+
+user_edit.title: User Update
+
+dashboard.title: Dashboard
+
+general:
+    cancel: Cancel
+    save: Save
+    action: Action
+
+menu:
+    user: User

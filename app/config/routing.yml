@@ -1,0 +1,41 @@
+#acme_store:
+#    resource: "@AcmeStoreBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#app:
+#    resource: "@AppBundle/Controller/"
+#    type:     annotation
+
+
+#vlad_bugtracker:
+#    resource: "@VladBugtrackerBundle/Resources/config/routing.yml"
+#    prefix: /
+
+_user_bundle:
+    resource: "@VladUserBundle/Resources/config/routing.yml"
+
+vlad_bugtracker_dashboard_page:
+    path: /
+    defaults: { _controller: VladBugtrackerBundle:Dashboard:index }
+
+vlad_bugtracker_user:
+    path: /user
+    defaults: { _controller: VladUserBundle:User:index }
+
+#vlad_user_user:
+#    path: /user
+#    defaults: { _controller: VladBugtrackerBundle:Dashboard:index }
+
+vlad_user_user_edit:
+    pattern: /user_edit/{userId}
+    defaults: { _controller: VladUserBundle:User:edit, userId: userId }
+
+vlad_user_user_delete:
+    pattern: /user_edit/{userId}
+    defaults: { _controller: VladUserBundle:User:delete, userId: userId }
+
+
+vlad_bugtracker_issue:
+    pattern: /issue
+    defaults: { _controller: VladBugtrackerBundle:Issue:index }
+

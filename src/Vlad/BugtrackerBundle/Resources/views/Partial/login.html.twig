@@ -1,0 +1,25 @@
+{% extends "VladBugtrackerBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block description %}{{ parent() }}{% endblock %}
+
+{% block bugtracker_body %}
+
+    <div id="login">
+
+            <form action="{{ path('vlad_bugtracker_login_check') }}" method="post">
+                <label for="username">{{ 'login.username' | trans }} :</label>
+                <input type="text" id="username" name="_username" placeholder="{{ 'login.username' | trans }}" value="{{ last_username }}" />
+
+                <label for="password">{{ 'login.password' | trans }} :</label>
+                <input type="password" id="password" name="_password" placeholder="{{ 'login.password' | trans }}" />
+
+                <input type="submit" class="btn" value="{{ 'login.submit' | trans }}" />
+            </form>
+
+    </div>
+
+{% endblock %}
+
+

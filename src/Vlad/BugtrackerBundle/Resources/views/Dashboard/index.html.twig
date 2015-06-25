@@ -1,0 +1,26 @@
+{% extends "VladBugtrackerBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block description %}{{ parent() }}{% endblock %}
+
+{% block bugtracker_body %}
+
+    {% include 'VladBugtrackerBundle:Partial:menu.html.twig' with {'route' : 'dashboard'} %}
+
+    <div id="dashboard" class="main-wrapper">
+        <div class="header">
+            <div class="title">
+                <h1>{{ 'dashboard.title' | trans }}</h1>
+            </div>
+            <div class="button-add">
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+        Dashboard
+
+    </div>
+
+{% endblock %}

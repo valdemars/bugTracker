@@ -1,0 +1,17 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  font: 100%/1.4 "lucida sans unicode", "lucida grande", "Trebuchet MS", verdana, arial, helvetica, helve, sans-serif;
+}
+
+.container {
+  clear: both;
+  color: #333333;
+  font-size: 0.8125em;
+  line-height: 1.5em;
+  margin: 0 auto;
+  padding: 1em 0;
+  position: relative;
+  width: 95%;
+}
+

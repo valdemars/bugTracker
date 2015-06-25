@@ -1,0 +1,13 @@
+
+{#{{ dump(app.request.attributes.get('_route')) }}#}
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">Menu</a>
+        <ul class="nav">
+            <li{% if (route == 'dashboard') %} class="active"{% endif %}><a href="{{ path('vlad_bugtracker_dashboard_page') }}">Dashboard</a></li>
+            <li{% if (route == 'issue') %} class="active"{% endif %}><a href="{{ path('vlad_bugtracker_issue') }}">Issue</a></li>
+            <li{% if (route == 'user') %} class="active"{% endif %}><a href="{{ path('vlad_bugtracker_user') }}">{{ 'menu.user' | trans }}</a></li>
+        </ul>
+    </div>
+</div>

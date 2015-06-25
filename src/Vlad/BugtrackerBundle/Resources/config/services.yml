@@ -1,0 +1,38 @@
+parameters:
+    symfony.form.class: Symfony\Component\Form\Form
+
+    vlad_user.user_manager.class: Vlad\UserBundle\Library\UserManager
+
+    vlad_user.user.form.class: Vlad\UserBundle\Form\Type\UserFormType
+    vlad_user.user.form_handler.class: Vlad\UserBundle\Form\Handler\UserFormHandler
+
+services:
+
+    vlad_user.user_manager:
+        class: %vlad_user.user_manager.class%
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+            encoderFactory: "@security.encoder_factory"
+            securityContect: "@security.context"
+            session: "@session"
+
+    vlad_user.user.form:
+            class: %symfony.form.class%
+            factory_service: form.factory
+            factory_method: createNamed
+            arguments:
+                - vlad_user_user
+                - vlad_user_user
+
+    vlad_user.user.form.type:
+        class: %vlad_user.user.form.class%
+        tags:
+            - { name: form.type, alias: vlad_user_user }
+
+    vlad_user.user.form_handler:
+        class: %vlad_user.user.form_handler.class%
+        scope: request
+        arguments:
+            form: "@vlad_user.user.form"
+            request: "@request"
+            userManager: "@vlad_user.user_manager"

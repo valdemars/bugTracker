@@ -1,0 +1,32 @@
+{% extends "VladBugtrackerBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block description %}{{ parent() }}{% endblock %}
+
+{% block bugtracker_body %}
+
+    {% include 'VladBugtrackerBundle:Partial:menu.html.twig' %}
+
+	<div id="dashboard" class="main-wrapper">
+		<div class="header">
+			<div class="title">
+				<h1>{{ 'user_edit.title' | trans }}</h1>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		<form action="{{ path('vlad_bugtracker_user_edit', {'userId':user.id}) }}" method="post" {{ form_enctype(form) }}>
+		    {{ form_row(form.username, { 'label' : 'user.username' }) }}
+            {{ form_row(form.email, { 'label' : 'user.email' }) }}
+            {{ form_row(form.email, { 'label' : 'user.fullname' }) }}
+            {{ form_row(form.password, { 'label' : 'user.password' }) }}
+	        {{ form_rest(form) }}
+	        <a href="{{ path('vlad_bugtracker_user') }}" class="btn btn-warning">{{ 'general.cancel' | trans }}</a>
+	        <input type="submit" class="btn btn-warning" value="{{ 'general.save' | trans }}" />
+		</form>
+	</div>
+
+{% endblock %}
+
+
