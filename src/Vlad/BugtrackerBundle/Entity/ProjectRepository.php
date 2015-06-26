@@ -12,4 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProjectRepository extends EntityRepository
 {
+
+	/**
+	 * Function which returns a project from DB
+	 *
+	 * @param integer $userId  User ID
+	 * @param boolean $isAdmin True if the user is an admin
+	 *
+	 * @return QueryBuilder
+	 */
+	public function getByUser($userId, $isAdmin)
+	{
+		$qb = $this->createQueryBuilder('p')
+			->orderBy('p.name', 'ASC');
+
+		if (!$isAdmin) {
+			$qb->leftJoin('p.users', 'user')
+				->where($qb->expr()->eq('user.id', $userId));
+		}
+
+		return $qb;
+	}
 }

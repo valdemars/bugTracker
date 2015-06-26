@@ -1,0 +1,21 @@
+{% extends "VladBugtrackerBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block description %}{{ parent() }}{% endblock %}
+
+{% block bugtracker_body %}
+
+	{#{% render "VladBugtrackerBundle:Partial:menu" with {'route' : 'issue'} %}#}
+
+    <div class="span6">
+        <form action="{{ path('vlad_bugtracker_issue_edit', {'ticketId':issue.id}) }}" method="post" {{ form_enctype(form) }}>
+            {{ form_row(form.code, { 'label' : 'issue.code', 'attr': {'class': 'span12'} }) }}
+            {{ form_rest(form) }}
+            <a href="{{ path('vlad_bugtracker_dashboard_page') }}" class="btn btn-warning">{{ 'general.cancel' | trans }}</a>
+            <input type="submit" class="btn btn-warning" value="{{ 'general.save' | trans }}" />
+        </form>
+    </div>
+
+{% endblock %}
+

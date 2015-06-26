@@ -31,6 +31,7 @@ class UserManager
         $this->em = $em;
         $this->repository = $this->em->getRepository('VladUserBundle:User');
 	    $this->encoderFactory = $encoderFactory;
+	    $this->securityContext = $securityContext;
 
         $this->session = $session;
     }
@@ -60,6 +61,28 @@ class UserManager
 		$user = $this->repository->find($userId);
 
 		return ($user) ? $user : null;
+	}
+
+	/**
+	 * Function which returns a user from Session
+	 *
+	 * @return User
+	 */
+	public function getUser()
+	{
+		return ($this->securityContext->getToken()) ? $this->securityContext->getToken()->getUser() : null;
+	}
+
+	/**
+	 * Function which returns the project in session
+	 *
+	 * @return integer
+	 */
+	public function getProjectInSession()
+	{
+		$projectId = $this->session->get('current_project');
+
+		return ($projectId) ? $this->repositoryProject->find($projectId) : null;
 	}
 
 	/**
@@ -98,5 +121,15 @@ class UserManager
 			return false;
 		}
 	}*/
+
+	/**
+	 * Function which checks if a user is an admin
+	 *
+	 * @return boolean
+	 */
+	public function isAdmin()
+	{
+		return $this->securityContext->isGranted('ROLE_ADMIN');
+	}
 
 }

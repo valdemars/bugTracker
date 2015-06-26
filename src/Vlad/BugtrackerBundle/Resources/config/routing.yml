@@ -16,7 +16,6 @@ vlad_bugtracker_dashboard_page:
 
 
 
-
 #webaccess_bugtracker_ticket_add:
 #    pattern: /{_locale}/ticket_add
 #    defaults: { _controller: WebaccessBugtrackerBundle:Ticket:add, _locale: "%locale%" }

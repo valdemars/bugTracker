@@ -6,6 +6,13 @@ parameters:
     vlad_user.user.form.class: Vlad\UserBundle\Form\Type\UserFormType
     vlad_user.user.form_handler.class: Vlad\UserBundle\Form\Handler\UserFormHandler
 
+    vlad_bugtracker.issue_manager.class: Vlad\BugtrackerBundle\Library\IssueManager
+    vlad_bugtracker.issue.form.class: Vlad\BugtrackerBundle\Form\Type\IssueFormType
+    vlad_bugtracker.issue.form_handler.class: Vlad\BugtrackerBundle\Form\Handler\IssueFormHandler
+
+    vlad_bugtracker.issue_filter.form.class: Vlad\BugtrackerBundle\Form\Type\IssueFilterFormType
+    vlad_bugtracker.issue_filter.form_handler.class: Vlad\BugtrackerBundle\Form\Handler\IssueFilterFormHandler
+
 services:
 
     vlad_user.user_manager:
@@ -36,3 +43,60 @@ services:
             form: "@vlad_user.user.form"
             request: "@request"
             userManager: "@vlad_user.user_manager"
+
+
+    vlad_bugtracker.issue_manager:
+        class: %vlad_bugtracker.issue_manager.class%
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+            userManager: "@vlad_user.user_manager"
+
+    vlad_bugtracker.issue.form:
+        class: %symfony.form.class%
+        factory_service: form.factory
+        factory_method: createNamed
+        arguments:
+            - vlad_bugtracker_issue
+            - vlad_bugtracker_issue
+
+    vlad_bugtracker.issue.form.type:
+        class: %vlad_bugtracker.issue.form.class%
+        arguments:
+            userManager: "@vlad_user.user_manager"
+            translationManager: "@translator"
+        tags:
+            - { name: form.type, alias: vlad_bugtracker_issue }
+
+    vlad_bugtracker.issue.form_handler:
+        class: %vlad_bugtracker.issue.form_handler.class%
+        scope: request
+        arguments:
+            form: "@vlad_bugtracker.issue.form"
+            request: "@request"
+            ticketManager: "@vlad_bugtracker.issue_manager"
+
+    vlad_bugtracker.issue_filter.form:
+        class: %symfony.form.class%
+        factory_service: form.factory
+        factory_method: createNamed
+        arguments:
+            - vlad_bugtracker_issue_filter
+            - vlad_bugtracker_issue_filter
+
+    vlad_bugtracker.issue_filter.form.type:
+        class: %vlad_bugtracker.issue_filter.form.class%
+        arguments:
+            userManager: "@vlad_user.user_manager"
+            translationManager: "@translator"
+        tags:
+            - { name: form.type, alias: vlad_bugtracker_issue_filter }
+
+    vlad_bugtracker.issue_filter.form_handler:
+        class: %vlad_bugtracker.issue_filter.form_handler.class%
+        scope: request
+        arguments:
+            form: "@vlad_bugtracker.issue_filter.form"
+            request: "@request"
+            session: "@session"
+
+

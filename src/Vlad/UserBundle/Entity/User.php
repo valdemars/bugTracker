@@ -31,7 +31,6 @@ class User extends BaseUser
 	}
 
 
-
     /**
      * Get id
      *

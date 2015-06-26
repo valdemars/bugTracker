@@ -22,9 +22,6 @@ vlad_bugtracker_user:
     path: /user
     defaults: { _controller: VladUserBundle:User:index }
 
-#vlad_user_user:
-#    path: /user
-#    defaults: { _controller: VladBugtrackerBundle:Dashboard:index }
 
 vlad_user_user_edit:
     pattern: /user_edit/{userId}
@@ -38,4 +35,13 @@ vlad_user_user_delete:
 vlad_bugtracker_issue:
     pattern: /issue
     defaults: { _controller: VladBugtrackerBundle:Issue:index }
+
+
+vlad_bugtracker_issue_edit:
+    pattern: /issue_edit/{ticketId}
+    defaults: { _controller: VladBugtrackerBundle:Issue:edit, ticketId: ticketId }
+
+vlad_bugtracker_issue_delete:
+    pattern: /issue_delete/{ticketId}
+    defaults: { _controller: VladBugtrackerBundle:Issue:delete, ticketId: ticketId }
 

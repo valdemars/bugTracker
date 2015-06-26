@@ -16,7 +16,13 @@ class DashboardController extends Controller
 
     public function indexAction()
     {
-        return $this->render('VladBugtrackerBundle:Dashboard:index.html.twig');
+	    $issues = $this->getDoctrine()
+		    ->getRepository('VladBugtrackerBundle:Issue')
+		    ->findAll();
+
+        return $this->render('VladBugtrackerBundle:Dashboard:index.html.twig', [
+	        'issues' => $issues
+        ]);
     }
 
 }

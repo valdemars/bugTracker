@@ -25,14 +25,6 @@ security:
             anonymous:                      true
         main:
             pattern:    ^/
-            #form_login:
-            #    check_path: /login_ckeck
-            #    login_path: /login
-            #    provider: fos_userbundle
-            #logout:
-            #    path:   /logout
-            #    target: /
-            #anonymous: ~
             form_login:
                 provider: fos_userbundle
                 default_target_path: /

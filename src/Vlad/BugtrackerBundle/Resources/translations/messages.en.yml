@@ -16,3 +16,6 @@ general:
 
 menu:
     user: User
+
+issue:
+    title: Issue

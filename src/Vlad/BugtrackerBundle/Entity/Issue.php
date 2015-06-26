@@ -57,6 +57,12 @@ class Issue
 	 */
 	protected $project;
 
+	/**
+	 * @var ArrayCollection $states
+	 *
+	 * @ORM\OneToMany(targetEntity="IssueState", mappedBy="issue", cascade={"remove"})
+	 */
+	protected $states;
 
     /**
      * Get id
@@ -67,6 +73,49 @@ class Issue
     {
         return $this->id;
     }
+
+	/**
+	 * Add state
+	 *
+	 * @param IssueState $state
+	 */
+	public function addState(IssueState $state)
+	{
+		if (!$this->states->contains($state)) {
+			$this->states->add($state);
+		}
+	}
+
+	/**
+	 * Set current_state
+	 *
+	 * @param IssueState $currentState
+	 * @return Issue
+	 */
+	public function setCurrentState(IssueState $currentState)
+	{
+		$this->currentState = $currentState;
+		return $this;
+	}
+
+	/**
+	 * @var Project $project
+	 *
+	 * @ORM\ManyToOne(targetEntity="IssueState", cascade={"remove"})
+	 * @ORM\JoinColumn(name="current_state_id", referencedColumnName="id", onDelete="SET NULL")
+	 */
+	protected $currentState;
+
+
+	/**
+	 * Get states
+	 *
+	 * @return states
+	 */
+	public function getStates()
+	{
+		return $this->states;
+	}
 
     /**
      * Set summary

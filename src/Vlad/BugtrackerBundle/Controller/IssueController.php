@@ -11,19 +11,6 @@ class IssueController extends Controller
 
     public function indexAction()
     {
-        /*$form = $this->container->get('webaccess_bugtracker.ticket_filter.form');
-        $formHandler = $this->container->get('webaccess_bugtracker.ticket_filter.form_handler');
-
-        if ($formHandler->process()) {
-            return $this->redirect($this->generateUrl('webaccess_bugtracker_ticket'));
-        }
-
-        $aParams['tickets'] = $this->container->get('webaccess_bugtracker.ticket_manager')->getTicketsPaginatedList($pageNumber);
-        $aParams['pagination'] = $this->container->get('webaccess_bugtracker.ticket_manager')->getTicketsPagination($pageNumber);
-        $aParams['form'] = $form->createView();*/
-
-
-	    $issues = [];
 	    $issues = $this->getDoctrine()
 		    ->getRepository('VladBugtrackerBundle:Issue')
 		    ->findAll();
@@ -32,6 +19,23 @@ class IssueController extends Controller
 	        'issues' => $issues
         ]);
     }
+
+
+	public function editAction($ticketId)
+	{
+		$ticket = $this->container->get('vlad_bugtracker.issue_manager')->getIssue($ticketId);
+		$form = $this->container->get('vlad_bugtracker.issue.form');
+		$formHandler = $this->container->get('vlad_bugtracker.issue.form_handler');
+
+		if ($formHandler->process($ticket)) {
+			return $this->redirect($this->generateUrl('vlad_bugtracker_dashboard_page'));
+		}
+
+		$aParams['form'] = $form->createView();
+		$aParams['issue'] = $ticket;
+
+		return $this->render('VladBugtrackerBundle:Issue:edit.html.twig', $aParams);
+	}
 
 
 }
